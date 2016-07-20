@@ -7,14 +7,11 @@ from colour import Color
 
 # TODO
 '''
-* dark line between entries
 * shorten prdeictions
-* color score based off val
 * convert to pdf w compressed img and page breaks
-* Narrow pic column
 * Larger text?
-* move correct label under image_path
 * add prediction timestamp?
+* table of contents
 * insert col before img with green/yel/red icon for prediciton
 '''
 
@@ -129,15 +126,15 @@ def addEntry(row):
                         <br><b>{filename}</b>
                     </td>
                     <td>{breed1}</td>
-                    <td style="background-color:{color1}" >{score1}</td>
+                    <td style="background-color:{color1}" ><b>{score1}</b></td>
                 </tr>
                 <tr>
                     <td>{breed2}</td>
-                    <td style="background-color:{color2}">{score2}</td>
+                    <td style="background-color:{color2}"><b>{score2}</b></td>
                 </tr>
                 <tr>
                     <td>{breed3}</td>
-                    <td style="background-color:{color3}">{score3}</td>
+                    <td style="background-color:{color3}"><b>{score3}</b></td>
                 </tr>
             </tbody>
             <thead class="splitter"><th colspan="3"></th></thead>
