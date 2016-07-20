@@ -20,7 +20,8 @@ title = 'Test Results V1'
 notes = '''
 <h5>Version 1 benchmark 7/15/16</h5>
 <p> This report has approx 5000 prelabeled dog pics, and the top 3 predictions.
-The predictions include a confidence which is between 0 and 1, 1 being 100% confident.
+The embeded pictures are resized (smaller) so the report loads faster.</p>
+<p>The predictions include a confidence which is between 0 and 1, 1 being 100% confident.
 To improve readability, I mapped the confidence to colors (0 = red, 1 = green).
 Ideally, the top guess is green and other guesses are red, however, sometimes they
 are all simlar shades indicating no obvious choice.</p>
