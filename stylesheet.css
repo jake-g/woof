@@ -1,0 +1,31 @@
+body {
+  font-family: Helvetica, sans-serif;
+  color: #666;
+  margin: 20px;
+}
+p {
+  font-size: 13px
+}
+img {
+    width: auto;
+    height: 200px;
+    border-radius: 4px;
+}
+table {
+    font-size: 12px;
+    background: #eaebec;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Heading*/
+table th {
+    padding: 20px;
+    background: #f4f4f4;
+    font-size: 13px;
+}
+/*Body*/
+table td {
+    padding: 20px;
+    background: #fafafa;
+}
