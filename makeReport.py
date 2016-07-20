@@ -19,6 +19,14 @@ from colour import Color
 '''
 
 
+title = 'Test 1 Results'
+notes = '''
+First benchmark 7/15/16. Seems to struggle with a few breed
+(American Bulldog, Shiba Inu and more). Still need to automate
+a method that determines the overall error in the predictions
+'''
+
+
 def loadLog(f):
     ext = os.path.splitext(f)[1]
     if ext in '.tsv':
@@ -66,6 +74,7 @@ def getArgs(r):
 
 
 def getSkeleton(log):
+    report = {'title': title, 'notes': notes}
     skeleton = {}
     skeleton['header'] = '''
     <!DOCTYPE html>
@@ -73,13 +82,14 @@ def getSkeleton(log):
     <head>
         <title>Woof Report</title>
         <link rel="stylesheet" href="stylesheet.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="scroll.js"></script>
     </head>
     <body>
         <div id="header">
-            <h3>TITLE</h3>
-            <p> Notes.......</p>
+            <h3>{title}</h3>
+            <p>{notes}</p>
         </div>
-
         <table>
             <thead>
                 <th>Labeled Image</th>
@@ -87,7 +97,7 @@ def getSkeleton(log):
                 <th>Score</th>
             </thead>
 
-            '''
+            '''.format(**report)
     skeleton['body'] = getBody(log)
     skeleton['footer'] = '''
         </table>
@@ -100,22 +110,24 @@ def getSkeleton(log):
 def addEntry(row):
     args = getArgs(row)
     entry = '''
-        <tbody>
-            <tr>
-                <td rowspan="4"><img src="{path}" /> <br><b>{filename}</b></td>
-                <td>{breed1}</td>
-                <td style="background-color:{color1}" >{score1}</td>
-            </tr>
-            <tr>
-                <td>{breed2}</td>
-                <td style="background-color:{color2}">{score2}</td>
-            </tr>
-            <tr>
-                <td>{breed3}</td>
-                <td style="background-color:{color3}">{score3}</td>
-            </tr>
-        </tbody>
-        <thead class="splitter"><th colspan="3"></th></thead>
+        <div class="scrollable-data">
+            <tbody>
+                <tr>
+                    <td rowspan="4"><img src="{path}" /> <br><b>{filename}</b></td>
+                    <td>{breed1}</td>
+                    <td style="background-color:{color1}" >{score1}</td>
+                </tr>
+                <tr>
+                    <td>{breed2}</td>
+                    <td style="background-color:{color2}">{score2}</td>
+                </tr>
+                <tr>
+                    <td>{breed3}</td>
+                    <td style="background-color:{color3}">{score3}</td>
+                </tr>
+            </tbody>
+            <thead class="splitter"><th colspan="3"></th></thead>
+        </div>
 
         '''.format(**args)
     return entry
