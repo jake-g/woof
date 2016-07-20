@@ -82,8 +82,6 @@ def getSkeleton(log):
     <head>
         <title>Woof Report</title>
         <link rel="stylesheet" href="stylesheet.css" type="text/css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="scroll.js"></script>
     </head>
     <body>
         <div id="header">
@@ -110,24 +108,22 @@ def getSkeleton(log):
 def addEntry(row):
     args = getArgs(row)
     entry = '''
-        <div class="scrollable-data">
-            <tbody>
-                <tr>
-                    <td rowspan="4"><img src="{path}" /> <br><b>{filename}</b></td>
-                    <td>{breed1}</td>
-                    <td style="background-color:{color1}" >{score1}</td>
-                </tr>
-                <tr>
-                    <td>{breed2}</td>
-                    <td style="background-color:{color2}">{score2}</td>
-                </tr>
-                <tr>
-                    <td>{breed3}</td>
-                    <td style="background-color:{color3}">{score3}</td>
-                </tr>
-            </tbody>
-            <thead class="splitter"><th colspan="3"></th></thead>
-        </div>
+        <tbody>
+            <tr>
+                <td rowspan="4"><img src="{path}" /> <br><b>{filename}</b></td>
+                <td>{breed1}</td>
+                <td style="background-color:{color1}" >{score1}</td>
+            </tr>
+            <tr>
+                <td>{breed2}</td>
+                <td style="background-color:{color2}">{score2}</td>
+            </tr>
+            <tr>
+                <td>{breed3}</td>
+                <td style="background-color:{color3}">{score3}</td>
+            </tr>
+        </tbody>
+        <thead class="splitter"><th colspan="3"></th></thead>
 
         '''.format(**args)
     return entry
