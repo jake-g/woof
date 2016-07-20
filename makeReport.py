@@ -19,11 +19,21 @@ from colour import Color
 '''
 
 
-title = 'Test 1 Results'
+title = 'Test Results V1'
 notes = '''
-First benchmark 7/15/16. Seems to struggle with a few breed
-(American Bulldog, Shiba Inu and more). Still need to automate
-a method that determines the overall error in the predictions
+<h5>Version 1 benchmark 7/15/16</h5>
+<p> This report has approx 5000 prelabeled dog pics, and the top 3 predictions.
+The predictions include a confidence which is between 0 and 1, 1 being 100% confident.
+To improve readability, I mapped the confidence to colors (0 = red, 1 = green).
+Ideally, the top guess is green and other guesses are red, however, sometimes they
+are all simlar shades indicating no obvious choice.</p>
+<p>You may notice sometimes the prediction is not a dog breed (ex Burrito) The next
+version will fix this</p>
+<p>The classifier seems to struggle with a few breed (American Bulldog, Shiba Inu and more).
+In the next version, I will automate a method that determines the overall error
+in the predictions by seeing if the top choices match the label (higher score
+will be given when the top score matches the label, partial credit if the second
+or third is correct) This way each version will have an overall accuracy for this dataset</p>
 '''
 
 
@@ -83,6 +93,7 @@ def getSkeleton(log):
         <title>Woof Report</title>
         <link rel="stylesheet" href="stylesheet.css" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="jquery.lazyload.js" type="text/javascript"></script>
         <script src="scroll.js"></script>
     </head>
     <body>
@@ -113,7 +124,10 @@ def addEntry(row):
         <div class="scrollable-data">
             <tbody>
                 <tr>
-                    <td rowspan="4"><img src="{path}" /> <br><b>{filename}</b></td>
+                    <td rowspan="4">
+                        <img class="lazy" data-original="{path}">
+                        <br><b>{filename}</b>
+                    </td>
                     <td>{breed1}</td>
                     <td style="background-color:{color1}" >{score1}</td>
                 </tr>
